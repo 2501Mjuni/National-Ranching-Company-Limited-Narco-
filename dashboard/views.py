@@ -11,12 +11,6 @@ def dashboard_home(request):
 def register(request):
     return render(request, 'dashboard/register.html')
 
-
-
-def register_transfer(request):
-    return render(request, 'dashboard/register_transfer.html')
-
-
     
 def register_user(request):
     return render(request, 'users/register_user.html')
