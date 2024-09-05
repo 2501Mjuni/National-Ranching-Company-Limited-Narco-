@@ -46,7 +46,6 @@
     <link rel="stylesheet" href="{% static 'AdminLTE/css/adminlte.css' %}" />
     <link href="{% static 'DataTable/datatables.min.css' %}" rel="stylesheet" />
 
-    {% comment %} <link rel="stylesheet" href="{% static 'frontend/dist/assets/index.css' %}"> {% endcomment %}
 
     <!--end::Required Plugin(AdminLTE)-->
     <!-- apexcharts -->
@@ -63,12 +62,22 @@
       integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
       crossorigin="anonymous"
     />
+
+    <style>
+      .form-label:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    </style>
+
   </head>
   <!--end::Head-->
   <!--begin::Body-->
 
-  <body class="layout-fixed sidebar-expand-lg sidebar-mini  bg-body-tertiary"> <!--begin::App Wrapper-->
-  
+
+
+  <body class="layout-fixed sidebar-expand-lg sidebar-mini bg-body-tertiary"> <!--begin::App Wrapper-->
+
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
@@ -110,7 +119,8 @@
               </a>
             </li>
             <!--end::Navbar Search-->
-          
+
+            
             <!--begin::Fullscreen Toggle-->
             <li class="nav-item">
               <a class="nav-link" href="#" data-lte-toggle="fullscreen">
@@ -221,138 +231,116 @@
                 </a>
               </li>
 
-              <!--ranches details-->
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-box-seam-fill"></i>
-                  <p>
-                    Ranches
-                    <span class="nav-badge badge text-bg-secondary me-3"
-                      >15</span
-                    >
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                          <p>Ranch No.1</p>
-                      </a> </li>
-                  <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                          <p>Ranch No.2</p>
-                      </a> </li>
-                  <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                          <p>Ranch No.3</p>
-                      </a> </li>
-                      <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                        <p>Ranch No.4</p>
-                    </a> </li>
-                    <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                      <p>Ranch No.5</p>
-                  </a> </li>
-                  <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                    <p>Ranch No.6</p>
-                </a> </li>
-                <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                  <p>Ranch No.7</p>
-              </a> </li>
-              <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                <p>Ranch No.8</p>
-            </a> </li>
-            <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-              <p>Ranch No.9</p>
+
+  <!--this is for ranches-->
+  <li class="nav-item">
+    <a href="{% url 'ranch_list' %}" class="nav-link">
+      <i class="nav-icon bi bi-box-seam-fill"></i>
+      <p>
+        Ranches
+      </p>
+    </a>
+  </li>
+
+
+<!--this is for settings-->
+  <li class="nav-item">
+    <a href="#" class="nav-link">
+      <i class="nav-icon bi bi-gear-wide-connected"></i>
+      
+      <p>
+        Settings
+        
+        <i class="nav-arrow bi bi-chevron-right"></i>
+      </p>
+     </a>
+     <ul class="nav nav-treeview">
+      <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+              <p>Mananing Director(MD)</p>
           </a> </li>
           <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-            <p>Ranch No.10</p>
+            <p>Supervisor</p>
         </a> </li>
         <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-          <p>Ranch No.11</p>
+          <p>Ranch Manager</p>
       </a> </li>
       <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-        <p>Ranch No.12</p>
+        <p>Recorder</p>
     </a> </li>
-    <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-      <p>Ranch No.13</p>
-    </a> </li>
-    <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-    <p>Ranch No.14</p>
-    </a> </li>
-    <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-    <p>Ranch No.15</p>
-    </a> </li>
-              </ul>
-
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <!-- <i class="nav-icon bi bi-clipboard-fill"></i> -->
-                  <i class="nav-icon bi bi-person-fill"></i>
-                  <p>
-                    Users
-                    <span class="nav-badge badge text-bg-secondary me-3"
-                      >6</span
-                    >
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
-                 </a>
-                 <ul class="nav nav-treeview">
-                  <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                          <p>Mananing Director(MD)</p>
-                      </a> </li>
-                      <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                        <p>Supervisor</p>
-                    </a> </li>
-                    <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                      <p>Ranch Manager</p>
-                  </a> </li>
-                  <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                    <p>Recorder</p>
-                </a> </li>
-                </ul>
+    </ul>
 
 
-
-<!-- The registrationn of events-->
-<li class="nav-item">
-  <a href="#" class="nav-link">
-    <i class="nav-icon bi bi-person-plus-fill"></i>
-    <p>
-      Register events
-       <span class="nav-badge badge text-bg-secondary me-3"
-        >6</span
-      > 
-      <i class="nav-arrow bi bi-chevron-right"></i>
-    </p>
-   </a>
-   <ul class="nav nav-treeview">
-    <li class="nav-item"> <a href="{% url 'register' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-            <p>
-              Register cattle
-            </p>
-        </a> </li>
-        <li class="nav-item"> <a href="{% url 'register_sale' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-          <p>Register sale </p>
-      </a> </li>
-      <li class="nav-item"> <a href="{% url 'register_death_page' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-        <p>Register death</p>
-    </a> </li>
-    <li class="nav-item"> <a href="{% url 'register_recovery' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+  <!-- The registration of events--> 
+  <li class="nav-item">
+    <a href="#" class="nav-link">
+      <i class="nav-icon bi bi-clipboard-fill"></i>
       <p>
-        Register recovery
+        Cattle events
+        
+        <i class="nav-arrow bi bi-chevron-right"></i>
+      </p>
+     </a>
+     <ul class="nav nav-treeview">
+      <li class="nav-item"> <a href="{% url 'cattle_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+              <p>
+                Cattles List
+              </p>
+          </a> </li>
+          <li class="nav-item"> <a href="{% url 'sale_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+            <p>Sold Cattles </p>
+        </a> </li>
+        <li class="nav-item"> <a href="{% url 'death_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+          <p>Death Cattles</p>
+      </a> </li>
+      <li class="nav-item"> <a href="{% url 'recovery_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+        <p>
+        Recovered Cattles
+        </p>
+    </a> </li>
+
+    <li class="nav-item"> <a href="{% url 'slaughter_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+      <p>
+        Slaughtered Cattles
       </p>
   </a> </li>
 
-  <li class="nav-item"> <a href="{% url 'register_slaughter' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+  <li class="nav-item"> <a href="{% url 'transfer_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
     <p>
-      Register slaughter
+      Transferred Cattles
     </p>
 </a> </li>
 
-<li class="nav-item"> <a href="{% url 'register_transfer' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+<li class="nav-item"> <a href="{% url 'complementary_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
   <p>
-    Register transfer
+    Complementary Cattles
   </p>
 </a> </li>
-  </ul>
+
+
+<li class="nav-item"> <a href="{% url 'bought_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+<p>
+  Bought Cattles
+</p>
+</a> </li>
+
+
+<li class="nav-item"> <a href="{% url 'birth_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+<p>
+Birth Cattles
+</p>
+</a> </li>
+
+<li class="nav-item"> <a href="{% url 'lost_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+<p>
+Lost Cattles
+</p>
+</a> </li>
+
+    </ul>
+
+
+
+
 
 
             <!--end::Sidebar Menu-->
@@ -386,72 +374,98 @@
           <!--end::Container-->
         </div>
         <!--end::App Content Header-->
-        <!--begin::App Content-->
-        
-         {% comment %} <div class="content-wrapper">
-            <div class="container mt-4">
-                <h1 class="mb-4">Registered Cattle</h1>
-                <table id="cattle-table" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Tag Number</th>
-                            <th>Birth Date</th>
-                            <th>Ranch</th>
-                            <th>Category</th>
-                            <th>Subcategory</th>
-                            <!-- Add more columns as needed -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Data will be populated here -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-       {% endcomment %}
+   
 
-
-       <div class="wrapper">
-        <!-- Main Content -->
         <div class="content-wrapper">
-          <div class="container-fluid mt-4">
-            <h1 class="mb-4">Registered Cattle</h1>
-            <!-- DataTable buttons container -->
-            <div class="d-flex justify-content-between mb-2">
-              <div id="entries-per-page" class="dataTables_length"></div>
-              <div class="d-flex align-items-center">
-                
-                <button id="addCattleBtn" class="btn btn-success btn-sm me-2" title="Add Cattle">
-            
-                  <i class="nav-icon bi bi-plus"></i> Add Cattle
-                </button>
-                <div id="search-input" class="dataTables_filter"></div>
-              </div>
-            </div>
-      
-            <table id="cattle-table" class="table table-striped table-bordered" style="width: 100%">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Tag Number</th>
-                  <th>Category</th>
-                  <th>Subcategory</th>
-                  <th>Birth Date</th>
-                  <th>Ranch</th>
-                  <th>View</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Data will be populated here -->
-              </tbody>
+          <div class="container mt-4">
+              <!-- Header for Cattle List -->
+              <h1 class="mb-4">Cattle List</h1>
               
-            </table>
+              <!-- DataTable buttons container for Cattle List -->
+              <div class="d-flex justify-content-between mb-2">
+                  <div id="entries-per-page-cattle" class="dataTables_length"></div>
+                  <div class="d-flex align-items-center">
+                      <button id="addCattleBtn" class="btn btn-success btn-sm me-2" title="Add Cattle" data-bs-toggle="modal" data-bs-target="#addCattleModal">
+                          <i class="nav-icon bi bi-plus"></i> Add Cattle
+                      </button>
+                  </div>
+              </div>
+          
+              <!-- DataTable for Cattle List -->
+              <table id="cattle-table" class="table table-striped table-bordered" style="width: 100%">
+                  <thead>
+                      <tr>
+                          <th>S/N</th>
+                          <th>Tag Number</th>
+                          <th>Ranch</th>
+                          <th>Status</th>
+                          <th>Views</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- Data will be populated here dynamically -->
+                  </tbody>
+              </table>
           </div>
-        </div>
       </div>
       
-
+      <!-- Modal for Adding Cattle -->
+      <div class="modal fade" id="addCattleModal" tabindex="-1" aria-labelledby="addCattleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="addCattleModalLabel">Add New Cattle</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <form id="addCattleForm">
+                          {% csrf_token %}
+                          
+                          <div class="mb-3">
+                              <label for="tag_number" class="form-label">Tag Number</label>
+                              <input type="text" class="form-control" id="tag_number" name="tag_number" required>
+                          </div>
+                          
+                          <div class="mb-3">
+                              <label for="ranch_id" class="form-label">Ranch</label>
+                              <select class="form-control" id="ranch_id" name="ranch_id" required>
+                                  <option value="" selected disabled>Select Ranch</option>
+                                  <!-- Options for ranches will be populated dynamically by JavaScript -->
+                              </select>
+                          </div>
+                          
+                          <div class="mb-3">
+                            <label for="birth_date" class="form-label">Birth Date</label>
+                            <input type="date" class="form-control" id="birth_date" name="birth_date" required />
+                        </div>
+                          
+                          <div class="mb-3">
+                              <label for="category_id" class="form-label">Category</label>
+                              <select class="form-control" id="category_id" name="category_id" required>
+                                  <option value="" selected disabled>Select Category</option>
+                                  <!-- Options for categories will be populated dynamically by JavaScript -->
+                              </select>
+                          </div>
+                          
+                          <div class="mb-3">
+                              <label for="subcategory_id" class="form-label">Subcategory (Optional)</label>
+                              <select class="form-control" id="subcategory_id" name="subcategory_id">
+                                  <option value="" selected disabled>Select Subcategory</option>
+                                  <!-- Options for subcategories will be populated dynamically by JavaScript -->
+                              </select>
+                          </div>
+                          
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Add Cattle</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
                 <!--end::Small Box Widget 4-->
               </div>
               <!--end::Col-->
@@ -494,7 +508,7 @@
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/browser/overlayscrollbars.browser.es6.min.js"
       integrity="sha256-H2VM7BKda+v2Z4+DRy69uknwxjyDRhszjXFhsL4gD3w="
       crossorigin="anonymous"
-    ></script>
+    ></scrip>
     <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -508,19 +522,16 @@
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-    {% comment %} <script src="{% static 'js/adminlte.js' %}"></script> {% endcomment %}
     <script src="{% static 'AdminLTE/js/adminlte.js' %}"></script>
     <script src="{% static 'js/main.js' %}" defer></script>
-    {% comment %} <script src="{% static 'js/jquery.min.js' %}" defer></script> {% endcomment %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'DataTable/datatables.min.js' %}"></script>
     <script src="{% static 'js/s1.js' %}" defer></script>
     <script src="{% static 'js/s2.js' %}" defer></script>
     <script src="{% static 'js/s3.js' %}" defer></script>
     <script src="{% static 'js/s4.js' %}" defer></script>
     <script src="{% static 'js/s5.js' %}" defer></script>
-    <script src="{% static 'DataTable/datatables.min.js' %}"></script>
-
-    {% comment %} <script type="module" src="{% static 'frontend/dist/assets/index.js' %}"></script> {% endcomment %}
+    <script src="{% static 'js/s15.js' %}" defer></script>
 
 
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->

@@ -26,6 +26,7 @@ from .views import (
     api_birth_list,
     api_lost_list,
     api_transferred_list,
+    api_cattle_list,
 )
 
 urlpatterns = [
@@ -54,5 +55,6 @@ urlpatterns = [
     re_path(r'^birth-list/$', api_birth_list, name= 'api_birth_list'),
     re_path(r'^lost-list/$', api_lost_list, name= 'api_lost_list'),
     re_path(r'^transferred-list/$', api_transferred_list, name= 'api_transferred_list'),
+    re_path(r'^cattle-list/$', api_cattle_list, name= 'api_cattle_list')
 ]
     

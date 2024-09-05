@@ -18,7 +18,6 @@ urlpatterns = [
     path('', views.dashboard_home, name='index'), 
     path('register_user/', views.register_user, name='register_user'),
     path('login/', views.login, name='login'), 
-    path('register/', views.register, name='register_cattle'),
     path('cattle_list/', CattleListView.as_view(), name='cattle_list'),  
     path('death_list/', DeathListView.as_view(), name='death_list'),  
     path('sale_list/', SaleListView.as_view(), name='sale_list'),  

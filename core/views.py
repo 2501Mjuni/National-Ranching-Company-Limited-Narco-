@@ -66,6 +66,23 @@ def register_new_cattle(request):
         import traceback
         return JsonResponse({'error': str(e), 'traceback': traceback.format_exc()}, status=500)
     
+     
+# for fetching cattle list
+@api_view(['GET'])
+def api_cattle_list(request):
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM fetch_cattle_list()")
+            result = cursor.fetchall()
+            columns = [desc[0] for desc in cursor.description]
+            data = [dict(zip(columns, row)) for row in result]
+
+        return Response(data, status=status.HTTP_200_OK)
+
+    except Exception as e:
+        import traceback
+        return Response({'error': str(e), 'traceback': traceback.format_exc()}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
     
      
 class RanchList(generics.ListAPIView):

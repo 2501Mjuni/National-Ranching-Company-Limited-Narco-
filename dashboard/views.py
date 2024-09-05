@@ -7,10 +7,6 @@ from django.views.generic import TemplateView
 def dashboard_home(request):
     return render(request, 'home/index.html')
 
-# render register.html
-def register(request):
-    return render(request, 'dashboard/register.html')
-
     
 def register_user(request):
     return render(request, 'users/register_user.html')

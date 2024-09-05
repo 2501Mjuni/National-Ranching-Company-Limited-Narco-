@@ -1,19 +1,17 @@
-// Fetch and display registered transferred cattle
+// Fetch and display registered cattle
 $.ajax({
-    url: '/api/transferred-list/',  // Correct API endpoint for transferred cattle
+    url: '/api/cattle-list/',  // Correct API endpoint for cattle list
     method: 'GET',
     dataType: 'json',
     success: function (data) {
         // Initialize DataTable with fetched data
-        $('#transfer-table').DataTable({
+        $('#cattle-table').DataTable({
             data: data, // Data source from API
             columns: [
                 { data: null, render: (data, type, row, meta) => meta.row + 1 }, // S/N
                 { data: 'tag_number' }, // Tag Number
-                { data: 'current_ranch' }, // Current Ranch
-                { data: 'new_ranch' }, // New Ranch
-                { data: 'transfer_date' }, // Transfer Date
-                { data: 'reason' }, // Reason
+                { data: 'ranch' }, // Ranch
+                { data: 'status' }, // Status
                 {
                     data: null,
                     render: function (data, type, row) {
@@ -46,64 +44,52 @@ $.ajax({
             ordering: true,
             language: {
                 search: "",
-                searchPlaceholder: "Search Transferred Cattle",
+                searchPlaceholder: "Search Cattle",
             },
             destroy: true // Allows reinitialization of DataTable
         });
 
         // Event handlers for buttons in the table
-        $('#transfer-table').on('click', '.view-btn', function () {
+        $('#cattle-table').on('click', '.view-btn', function () {
             var id = $(this).data('id');
             // Handle the view action here
             alert('View action for ID: ' + id);
         });
 
-        $('#transfer-table').on('click', '.edit-btn', function () {
+        $('#cattle-table').on('click', '.edit-btn', function () {
             var id = $(this).data('id');
             // Handle the edit action here
             alert('Edit action for ID: ' + id);
         });
 
-        $('#transfer-table').on('click', '.delete-btn', function () {
+        $('#cattle-table').on('click', '.delete-btn', function () {
             var id = $(this).data('id');
             // Handle the delete action here
-            if (confirm('Are you sure you want to delete this transfer record?')) {
+            if (confirm('Are you sure you want to delete this cattle record?')) {
                 alert('Delete action for ID: ' + id);
             }
         });
     },
     error: function (xhr, status, error) {
-        console.error('Failed to fetch transferred cattle data:', error);
+        console.error('Failed to fetch cattle data:', error);
         alert('Error fetching data from the server. Please try again later.');
     }
 });
 
-
-
-// This is for submiting
-document.getElementById('addTransferForm').addEventListener('submit', function(event) {
+// Form submission for adding a new cattle
+document.getElementById('addCattleForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
     console.log("Form submission intercepted"); // Debugging line
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
 
-    // Handle conditional logic based on 'transfer_to' value
-    if (data.transfer_to === 'ranch') {
-        data.project_location = null;  // Ensure project_location is not sent
-    } else if (data.transfer_to === 'project') {
-        data.new_ranch_id = null;  // Ensure new_ranch_id is not sent
-    } else {
-        data.new_ranch_id = null;
-        data.project_location = null;
-    }
-
     console.log("Data to be sent:", data); // Debugging line
 
     // Fetch CSRF token directly from the form
     const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-    fetch('/api/register-transfer/', {
+    fetch('/api/register-cattle/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -114,34 +100,15 @@ document.getElementById('addTransferForm').addEventListener('submit', function(e
     .then(response => response.json().then(data => ({status: response.status, data: data})))
     .then(({status, data}) => {
         console.log("Response data:", data); // Debugging line
-        if (status === 200) {
+        if (status === 200 || status === 201) {
             window.location.reload();
         } else {
-            console.error('Failed to register transfer:', data);
-            alert('Failed to register transfer: ' + (data.error || 'Unknown error'));
+            console.error('Failed to register cattle:', data);
+            alert('Failed to register cattle: ' + (data.error || 'Unknown error'));
         }
     })
     .catch(error => {
         console.error('Error:', error);
         alert('An error occurred: ' + error.message);
     });
-});
-
-
-
-const transferToSelect = document.getElementById('transfer_to');
-const ranchSelection = document.getElementById('ranchSelection');
-const projectDetails = document.getElementById('projectDetails');
-
-transferToSelect.addEventListener('change', function() {
-    if (this.value === 'ranch') {
-        ranchSelection.style.display = 'block';
-        projectDetails.style.display = 'none';
-    } else if (this.value === 'project') {
-        ranchSelection.style.display = 'none';
-        projectDetails.style.display = 'block';
-    } else {
-        ranchSelection.style.display = 'none';
-        projectDetails.style.display = 'none';
-    }
 });
