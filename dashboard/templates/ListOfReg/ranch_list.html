@@ -63,6 +63,9 @@
       integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
       crossorigin="anonymous"
     />
+    
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+    
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -412,7 +415,9 @@ Lost Cattles
         <div class="modal-body">
 
           <form id="addRanchForm">
+
             {% csrf_token %}
+            
             <div class="mb-3">
               <label for="ranchName" class="form-label">Ranch Name</label>
               <input type="text" class="form-control" id="ranchName" name= "name" required>
@@ -426,6 +431,8 @@ Lost Cattles
       </div>
     </div>
   </div>
+  
+
   
                 <!--end::Small Box Widget 4-->
               </div>
@@ -482,19 +489,16 @@ Lost Cattles
       integrity="sha256-YMa+wAM6QkVyz999odX7lPRxkoYAan8suedu4k2Zur8="
       crossorigin="anonymous"
     ></script>
-    <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-    {% comment %} <script src="{% static 'js/adminlte.js' %}"></script> {% endcomment %}
-    <script src="{% static 'AdminLTE/js/adminlte.js' %}"></script>
+    <script src="{% static 'AdminLTE/js/adminlte.js' %}" defer></script>
     <script src="{% static 'js/main.js' %}" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
     <script src="{% static 'js/s1.js' %}" defer></script>
     <script src="{% static 'js/s2.js' %}" defer></script>
     <script src="{% static 'js/s3.js' %}" defer></script>
     <script src="{% static 'js/s4.js' %}" defer></script>
     <script src="{% static 'js/s5.js' %}" defer></script>
-    <script src="{% static 'DataTable/datatables.min.js' %}"></script>
+    <script src="{% static 'DataTable/datatables.min.js' %}" defer></script>
 
-    {% comment %} <script type="module" src="{% static 'frontend/dist/assets/index.js' %}"></script> {% endcomment %}
 
 
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
