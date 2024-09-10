@@ -351,13 +351,13 @@ Lost Cattles
             <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Dashboard</h3>
+                <h3 class="mb-0">Ranches</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Dashboard
+                    Ranches
                   </li>
                 </ol>
               </div>
@@ -371,38 +371,51 @@ Lost Cattles
         
        
 
-      <div class="content-wrapper">
-        <div class="container mt-4">
-          <h1 class="mb-4">Registered Ranches</h1>
-      
-          <!-- DataTable buttons container -->
-          <div class="d-flex justify-content-between mb-2">
-            <div id="entries-per-page" class="dataTables_length"></div>
-            <div class="d-flex align-items-center">
 
-                <button id="addRanchBtn" class="btn btn-success btn-sm me-2" title="Add Ranch" data-bs-toggle="modal" data-bs-target="#addRanchModal">
-                    <i class="nav-icon bi bi-plus"></i> Add Ranch
-                  </button>
-                  
-            </div>
+     <div class="content-wrapper">
+      <div class="container">
+          <!-- Card Component for the Registered Ranches Section -->
+          <div class="card">
+              <div class="card-header">
+                  <div class="d-flex justify-content-between align-items-center">
+                      <h1 class="mb-0">Registered Ranches</h1>
+                      <button id="addRanchBtn" class="btn btn-success btn-sm" title="Add Ranch" data-bs-toggle="modal" data-bs-target="#addRanchModal">
+                          <i class="nav-icon bi bi-plus"></i> Add Ranch
+                      </button>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <!-- Inline Notification -->
+                  <div class="alert alert-info alert-dismissible fade show" role="alert">
+                      <strong>Welcome!</strong> Here are the registered ranches. You can add a new one using the button above.
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+  
+                  <!-- DataTable buttons container -->
+                  <div class="d-flex justify-content-between mb-2">
+                      <div id="entries-per-page" class="dataTables_length"></div>
+                  </div>
+  
+                  <table id="ranch-table" class="table table-striped table-bordered" style="width: 100%">
+                      <thead>
+                          <tr>
+                              <th>R. No</th>
+                              <th>Ranch Name</th>
+                              <th>View</th>
+                              <th>Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <!-- Data will be populated here dynamically -->
+                      </tbody>
+                  </table>
+              </div>
           </div>
-      
-          <table id="ranch-table" class="table table-striped table-bordered" style="width: 100%">
-            <thead>
-              <tr>
-                <th>R. No</th>
-                <th>Ranch Name</th>
-                <th>View</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Data will be populated here dynamically -->
-            </tbody>
-          </table>
-        </div>
       </div>
-      
+  </div>
+  
+
+
 
 <!-- Modal for Adding Ranch -->
 <div class="modal fade" id="addRanchModal" tabindex="-1" aria-labelledby="addRanchModalLabel" aria-hidden="true">

@@ -1,3 +1,4 @@
+
 // Fetch and display registered cattle
 $.ajax({
     url: '/api/cattle-list/',  // Correct API endpoint for cattle list
@@ -15,7 +16,7 @@ $.ajax({
                 {
                     data: null,
                     render: function (data, type, row) {
-                        return `<button class="btn btn-info btn-sm view-btn" data-id="${row.id}"><i class="bi bi-eye"></i> View</button>`;
+                        return `<button class="btn btn-info btn-sm view-btn" data-tag-number="${row.tag_number}"><i class="bi bi-eye"></i> View</button>`;
                     }
                 }, // View Button
                 {
@@ -49,25 +50,46 @@ $.ajax({
             destroy: true // Allows reinitialization of DataTable
         });
 
-        // Event handlers for buttons in the table
+
+        
+        // Event handler for View button
         $('#cattle-table').on('click', '.view-btn', function () {
-            var id = $(this).data('id');
-            // Handle the view action here
-            alert('View action for ID: ' + id);
-        });
-
-        $('#cattle-table').on('click', '.edit-btn', function () {
-            var id = $(this).data('id');
-            // Handle the edit action here
-            alert('Edit action for ID: ' + id);
-        });
-
-        $('#cattle-table').on('click', '.delete-btn', function () {
-            var id = $(this).data('id');
-            // Handle the delete action here
-            if (confirm('Are you sure you want to delete this cattle record?')) {
-                alert('Delete action for ID: ' + id);
+            var tagNumber = $(this).data('tag-number');  // Get tag number from data attribute
+            
+            if (!tagNumber) {
+                console.error('Tag number is missing or undefined.');
+                return;
             }
+            
+            // Fetch the cattle details from the API
+            $.ajax({
+                url: `/api/details-list/${tagNumber}/`,  // API endpoint for detailed view
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    console.log('API Response:', data);  // Log the entire response
+                    
+                    if (Array.isArray(data) && data.length > 0) {
+                        var cattle = data[0];  // Get the first item in the array
+                        console.log('Cattle Data:', cattle);  // Log the cattle data
+                        
+                        // Populate modal with data
+                        $('#modal-tag-number').text(cattle.tag_number);
+                        $('#modal-category').text(cattle.category_name);
+                        $('#modal-subcategory').text(cattle.subcategory_name);
+                        $('#modal-ranch').text(cattle.ranch_name);
+                        $('#modal-status').text(cattle.status);
+                        
+                        // Show the modal
+                        $('#cattleModal').modal('show');
+                    } else {
+                        console.error('No data received for tag number:', tagNumber);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Failed to fetch cattle details:', error);
+                }
+            });
         });
     },
     error: function (xhr, status, error) {
@@ -75,6 +97,7 @@ $.ajax({
         alert('Error fetching data from the server. Please try again later.');
     }
 });
+
 
 // Form submission for adding a new cattle
 document.getElementById('addCattleForm').addEventListener('submit', function(event) {

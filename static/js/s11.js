@@ -1,3 +1,4 @@
+
 // Fetch and display registered bought cattle
 $.ajax({
     url: '/api/bought-list/',  // Correct API endpoint for registered bought cattle
@@ -8,20 +9,22 @@ $.ajax({
         $('#bought-table').DataTable({
             data: data, // Data source from API
             columns: [
-                { data: null, render: (data, type, row, meta) => meta.row + 1 }, // S/N
-                { data: 'tag_number' }, // Tag Number
-                { data: 'ranch' }, // Ranch (assuming this is the name, not the ID)
-                { data: 'bought_date' }, // Bought Date
-                { data: 'location' }, // Location
-                { data: 'condition' }, // Condition
+                { data: null, render: (data, type, row, meta) => meta.row + 1, title: 'S/N' }, // S/N
+                { data: 'tag_number', title: 'Tag Number' }, // Tag Number
+                { data: 'ranch', title: 'Ranch' }, // Ranch
+                { data: 'bought_date', title: 'Bought Date' }, // Bought Date
+                { data: 'location', title: 'Location' }, // Location
+                { data: 'condition', title: 'Condition' }, // Condition
                 {
                     data: null,
+                    title: 'View',
                     render: function (data, type, row) {
-                        return `<button class="btn btn-info btn-sm view-btn" data-id="${row.id}"><i class="bi bi-eye"></i> View</button>`;
+                        return `<button class="btn btn-info btn-sm view-btn" data-tag-number="${row.tag_number}"><i class="bi bi-eye"></i> View</button>`;
                     }
                 }, // View Button
                 {
                     data: null,
+                    title: 'Actions',
                     render: function (data, type, row) {
                         return `
                         <div class="btn-group">
@@ -29,8 +32,8 @@ $.ajax({
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item edit-btn" href="#" data-id="${row.id}">Edit</a></li>
-                                <li><a class="dropdown-item delete-btn" href="#" data-id="${row.id}">Delete</a></li>
+                                <li><a class="dropdown-item edit-btn" href="#" data-tag-number="${row.tag_number}">Edit</a></li>
+                                <li><a class="dropdown-item delete-btn" href="#" data-tag-number="${row.tag_number}">Delete</a></li>
                             </ul>
                         </div>`;
                     }
@@ -51,34 +54,52 @@ $.ajax({
             destroy: true // Allows reinitialization of DataTable
         });
 
-        // Event handlers for buttons in the table
+        // Event handler for View button
         $('#bought-table').on('click', '.view-btn', function () {
-            var id = $(this).data('id');
-            // Handle the view action here
-            alert('View action for ID: ' + id);
-        });
-
-        $('#bought-table').on('click', '.edit-btn', function () {
-            var id = $(this).data('id');
-            // Handle the edit action here
-            alert('Edit action for ID: ' + id);
-        });
-
-        $('#bought-table').on('click', '.delete-btn', function () {
-            var id = $(this).data('id');
-            // Handle the delete action here
-            if (confirm('Are you sure you want to delete this bought record?')) {
-                alert('Delete action for ID: ' + id);
+            var tagNumber = $(this).data('tag-number'); // Get tag number from data attribute
+            
+            if (!tagNumber) {
+                console.error('Tag number is missing or undefined.');
+                return;
             }
+            
+            // Fetch the cattle details from the API
+            $.ajax({
+                url: `/api/details-list/${tagNumber}/`,  // API endpoint for detailed view
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    console.log('API Response:', data);  // Log the entire response
+                    
+                    if (Array.isArray(data) && data.length > 0) {
+                        var cattle = data[0];  // Get the first item in the array
+                        console.log('Cattle Data:', cattle);  // Log the cattle data
+                        
+                        // Populate modal with data
+                        $('#modal-tag-number').text(cattle.tag_number);
+                        $('#modal-category').text(cattle.category_name);
+                        $('#modal-subcategory').text(cattle.subcategory_name);
+                        $('#modal-ranch').text(cattle.ranch_name);
+                        $('#modal-status').text(cattle.status);
+                        
+                        // Show the modal
+                        $('#cattleModal').modal('show');
+                    } else {
+                        console.error('No data received for tag number:', tagNumber);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Failed to fetch cattle details:', error);
+                }
+            });
         });
+
     },
     error: function (xhr, status, error) {
         console.error('Failed to fetch bought cattle data:', error);
         alert('Error fetching data from the server. Please try again later.');
     }
 });
-
-
 
 // Handle form submission for adding a new bought cattle record
 document.getElementById('addBoughtForm').addEventListener('submit', function(event) {
@@ -113,5 +134,3 @@ document.getElementById('addBoughtForm').addEventListener('submit', function(eve
         alert('Failed to add bought record due to an unexpected error.');
     });
 });
-
-

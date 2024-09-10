@@ -357,13 +357,13 @@ Lost Cattles
             <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Dashboard</h3>
+                <h3 class="mb-0">Lost cattles</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Dashboard
+                    Lost
                   </li>
                 </ol>
               </div>
@@ -376,38 +376,52 @@ Lost Cattles
    
 
         <div class="content-wrapper">
-            <div class="container mt-4">
-              <!-- Header for Registered Birth Cattle -->
-              <h1 class="mb-4">Registered Lost Cattle</h1>
-              
-              <!-- DataTable buttons container for Birth Cattle -->
-              <div class="d-flex justify-content-between mb-2">
-                <div id="entries-per-page-birth" class="dataTables_length"></div>
-                <div class="d-flex align-items-center">
-                  <button id="addLostBtn" class="btn btn-success btn-sm me-2" title="Add Birth" data-bs-toggle="modal" data-bs-target="#addLostModal">
-                    <i class="nav-icon bi bi-plus"></i> Add Lost
-                  </button>
-                </div>
+          <div class="container">
+              <!-- Card Component for Registered Lost Cattle Section -->
+              <div class="card">
+                  <div class="card-header">
+                      <div class="d-flex justify-content-between align-items-center">
+                          <h1 class="mb-0">Registered Lost Cattle</h1>
+                          <button id="addLostBtn" class="btn btn-success btn-sm" title="Add Lost" data-bs-toggle="modal" data-bs-target="#addLostModal">
+                              <i class="nav-icon bi bi-plus"></i> Add Lost
+                          </button>
+                      </div>
+                  </div>
+                  <div class="card-body">
+
+  <!-- Inline Notification -->
+  <div class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong>Welcome!</strong> Here are the Lost cattles. You can add a new one using the button above.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+
+                      <!-- DataTable buttons container for Lost Cattle -->
+                      <div class="d-flex justify-content-between mb-2">
+                          <div id="entries-per-page-birth" class="dataTables_length"></div>
+                      </div>
+      
+                      <!-- DataTable for Registered Lost Cattle -->
+                      <table id="lost-table" class="table table-striped table-bordered" style="width: 100%">
+                          <thead>
+                              <tr>
+                                  <th>S/N</th>
+                                  <th>Tag Number</th>
+                                  <th>Ranch</th>
+                                  <th>Lost Date</th>
+                                  <th>View</th>
+                                  <th>Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <!-- Data will be populated here dynamically -->
+                          </tbody>
+                      </table>
+                  </div>
               </div>
-          
-              <!-- DataTable for Registered Birth Cattle -->
-              <table id="lost-table" class="table table-striped table-bordered" style="width: 100%">
-                <thead>
-                  <tr>
-                    <th>S/N</th>
-                    <th>Tag Number</th>
-                    <th>Ranch</th>
-                    <th>Lost Date</th>
-                    <th>View</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Data will be populated here dynamically -->
-                </tbody>
-              </table>
-            </div>
           </div>
+      </div>
+      
           
           <!-- Modal for Registering Birth Cattle -->
           <div class="modal fade" id="addLostModal" tabindex="-1" aria-labelledby="addLostModalLabel" aria-hidden="true">
@@ -451,6 +465,30 @@ Lost Cattles
             </div>
           </div>
           
+
+
+<!-- Modal -->
+<div class="modal fade" id="cattleModal" tabindex="-1" aria-labelledby="cattleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cattleModalLabel">Cattle Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Modal content will be dynamically inserted here -->
+        <p><strong>Tag Number:</strong> <span id="modal-tag-number"></span></p>
+        <p><strong>Category:</strong> <span id="modal-category"></span></p>
+        <p><strong>Subcategory:</strong> <span id="modal-subcategory"></span></p>
+        <p><strong>Ranch:</strong> <span id="modal-ranch"></span></p>
+        <p><strong>Status:</strong> <span id="modal-status"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
                 <!--end::Small Box Widget 4-->

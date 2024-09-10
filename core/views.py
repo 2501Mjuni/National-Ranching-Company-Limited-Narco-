@@ -784,3 +784,21 @@ def api_lost_list(request):
         import traceback
         return Response({'error': str(e), 'traceback': traceback.format_exc()}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
+
+#  this fetch each cattle details 
+@api_view(['GET'])
+def api_cattle_details_list(request, tag_number):
+    try:
+        with connection.cursor() as cursor:
+            # Correct way to call the PostgreSQL function
+            cursor.execute("SELECT * FROM fetch_cattle_details(%s);", [tag_number])
+            result = cursor.fetchall()
+            columns = [desc[0] for desc in cursor.description]
+            data = [dict(zip(columns, row)) for row in result]
+
+        return Response(data, status=status.HTTP_200_OK)
+
+    except Exception as e:
+        import traceback
+        return Response({'error': str(e), 'traceback': traceback.format_exc()}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

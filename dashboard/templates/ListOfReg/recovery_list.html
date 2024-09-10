@@ -45,6 +45,10 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="{% static 'AdminLTE/css/adminlte.css' %}" />
     <link href="{% static 'DataTable/datatables.min.css' %}" rel="stylesheet" />
+    <link
+    rel="stylesheet"
+    href="{% static 'toastr/toastr.min.css' %}"
+  />
 
 
     <!--end::Required Plugin(AdminLTE)-->
@@ -357,13 +361,13 @@ Lost Cattles
             <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Dashboard</h3>
+                <h3 class="mb-0">Recovered Cattles</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Dashboard
+                    Recovery
                   </li>
                 </ol>
               </div>
@@ -374,40 +378,55 @@ Lost Cattles
         </div>
         <!--end::App Content Header-->
    
+       
+
         <div class="content-wrapper">
-          <div class="container mt-4">
-            <h1 class="mb-4">Registered Recoveries</h1>
-        
-            <!-- DataTable buttons container -->
-            <div class="d-flex justify-content-between mb-2">
-              <div id="entries-per-page" class="dataTables_length"></div>
-              <div class="d-flex align-items-center">
-                <button id="addRecoveryBtn" class="btn btn-success btn-sm me-2" title="Add Recovery" data-bs-toggle="modal" data-bs-target="#addRecoveryModal">
-                  <i class="nav-icon bi bi-plus"></i> Add Recovery
-                </button>
+          <div class="container">
+              <!-- Card Component for Registered Recoveries Section -->
+              <div class="card">
+                  <div class="card-header">
+                      <div class="d-flex justify-content-between align-items-center">
+                          <h1 class="mb-0">Registered Recoveries</h1>
+                          <button id="addRecoveryBtn" class="btn btn-success btn-sm" title="Add Recovery" data-bs-toggle="modal" data-bs-target="#addRecoveryModal">
+                              <i class="nav-icon bi bi-plus"></i> Add Recovery
+                          </button>
+                      </div>
+                  </div>
+                  <div class="card-body">
+
+                       <!-- Inline Notification -->
+                  <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>Welcome!</strong> Here are the recovered cattles. You can add a new one using the button above.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                      <!-- DataTable buttons container -->
+                      <div class="d-flex justify-content-between mb-2">
+                          <div id="entries-per-page" class="dataTables_length"></div>
+                      </div>
+      
+                      <!-- DataTable for Registered Recoveries -->
+                      <table id="recovery-table" class="table table-striped table-bordered" style="width: 100%">
+                          <thead>
+                              <tr>
+                                  <th>S/N</th>
+                                  <th>Tag Number</th>
+                                  <th>Ranch</th>
+                                  <th>Recover Date</th>
+                                  <th>Notes</th>
+                                  <th>View</th>
+                                  <th>Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <!-- Data will be populated here dynamically -->
+                          </tbody>
+                      </table>
+                  </div>
               </div>
-            </div>
-        
-            <!-- DataTable -->
-            <table id="recovery-table" class="table table-striped table-bordered" style="width: 100%">
-              <thead>
-                <tr>
-                  <th>S/N</th>
-                  <th>Tag Number</th>
-                  <th>Ranch</th>
-                  <th>Recover Date</th>
-                  <th>Notes</th>
-                  <th>View</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Data will be populated here dynamically -->
-              </tbody>
-            </table>
           </div>
-        </div>
-  
+      </div>
+      
+
 
 <!-- Modal for Adding Recovery -->
 <div class="modal fade" id="addRecoveryModal" tabindex="-1" aria-labelledby="addRecoveryModalLabel" aria-hidden="true">
@@ -454,7 +473,33 @@ Lost Cattles
   </div>
 </div>
 
-                <!--end::Small Box Widget 4-->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="cattleModal" tabindex="-1" aria-labelledby="cattleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cattleModalLabel">Cattle Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Modal content will be dynamically inserted here -->
+        <p><strong>Tag Number:</strong> <span id="modal-tag-number"></span></p>
+        <p><strong>Category:</strong> <span id="modal-category"></span></p>
+        <p><strong>Subcategory:</strong> <span id="modal-subcategory"></span></p>
+        <p><strong>Ranch:</strong> <span id="modal-ranch"></span></p>
+        <p><strong>Status:</strong> <span id="modal-status"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+               <!--end::Small Box Widget 4-->
               </div>
               <!--end::Col-->
             </div>
@@ -510,18 +555,17 @@ Lost Cattles
       crossorigin="anonymous"
     ></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-    {% comment %} <script src="{% static 'js/adminlte.js' %}"></script> {% endcomment %}
-    <script src="{% static 'AdminLTE/js/adminlte.js' %}"></script>
+    <script src="{% static 'AdminLTE/js/adminlte.js' %}" defer></script>
     <script src="{% static 'js/main.js' %}" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{% static 'DataTable/datatables.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="{% static 'DataTable/datatables.min.js' %}" defer></script>
     <script src="{% static 'js/s1.js' %}" defer></script>
     <script src="{% static 'js/s2.js' %}" defer></script>
     <script src="{% static 'js/s3.js' %}" defer></script>
     <script src="{% static 'js/s4.js' %}" defer></script>
     <script src="{% static 'js/s5.js' %}" defer></script>
     <script src="{% static 'js/s6.js' %}" defer></script>
-
+    <script src="{% static 'toastr/toastr.min.js' %}" defer></script>
 
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script>

@@ -1,3 +1,4 @@
+
 // Fetch and display registered transferred cattle
 $.ajax({
     url: '/api/transferred-list/',  // Correct API endpoint for transferred cattle
@@ -8,20 +9,22 @@ $.ajax({
         $('#transfer-table').DataTable({
             data: data, // Data source from API
             columns: [
-                { data: null, render: (data, type, row, meta) => meta.row + 1 }, // S/N
-                { data: 'tag_number' }, // Tag Number
-                { data: 'current_ranch' }, // Current Ranch
-                { data: 'new_ranch' }, // New Ranch
-                { data: 'transfer_date' }, // Transfer Date
-                { data: 'reason' }, // Reason
+                { data: null, render: (data, type, row, meta) => meta.row + 1, title: 'S/N' }, // S/N
+                { data: 'tag_number', title: 'Tag Number' }, // Tag Number
+                { data: 'current_ranch', title: 'Current Ranch' }, // Current Ranch
+                { data: 'new_ranch', title: 'New Ranch' }, // New Ranch
+                { data: 'transfer_date', title: 'Transfer Date' }, // Transfer Date
+                { data: 'reason', title: 'Reason' }, // Reason
                 {
                     data: null,
+                    title: 'View',
                     render: function (data, type, row) {
-                        return `<button class="btn btn-info btn-sm view-btn" data-id="${row.id}"><i class="bi bi-eye"></i> View</button>`;
+                        return `<button class="btn btn-info btn-sm view-btn" data-tag-number="${row.tag_number}"><i class="bi bi-eye"></i> View</button>`;
                     }
                 }, // View Button
                 {
                     data: null,
+                    title: 'Actions',
                     render: function (data, type, row) {
                         return `
                         <div class="btn-group">
@@ -29,8 +32,8 @@ $.ajax({
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item edit-btn" href="#" data-id="${row.id}">Edit</a></li>
-                                <li><a class="dropdown-item delete-btn" href="#" data-id="${row.id}">Delete</a></li>
+                                <li><a class="dropdown-item edit-btn" href="#" data-tag-number="${row.tag_number}">Edit</a></li>
+                                <li><a class="dropdown-item delete-btn" href="#" data-tag-number="${row.tag_number}">Delete</a></li>
                             </ul>
                         </div>`;
                     }
@@ -51,25 +54,44 @@ $.ajax({
             destroy: true // Allows reinitialization of DataTable
         });
 
-        // Event handlers for buttons in the table
+        // Event handler for View button
         $('#transfer-table').on('click', '.view-btn', function () {
-            var id = $(this).data('id');
-            // Handle the view action here
-            alert('View action for ID: ' + id);
-        });
-
-        $('#transfer-table').on('click', '.edit-btn', function () {
-            var id = $(this).data('id');
-            // Handle the edit action here
-            alert('Edit action for ID: ' + id);
-        });
-
-        $('#transfer-table').on('click', '.delete-btn', function () {
-            var id = $(this).data('id');
-            // Handle the delete action here
-            if (confirm('Are you sure you want to delete this transfer record?')) {
-                alert('Delete action for ID: ' + id);
+            var tagNumber = $(this).data('tag-number'); // Get tag number from data attribute
+            
+            if (!tagNumber) {
+                console.error('Tag number is missing or undefined.');
+                return;
             }
+            
+            // Fetch the cattle details from the API
+            $.ajax({
+                url: `/api/details-list/${tagNumber}/`,  // API endpoint for detailed view
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    console.log('API Response:', data);  // Log the entire response
+                    
+                    if (Array.isArray(data) && data.length > 0) {
+                        var cattle = data[0];  // Get the first item in the array
+                        console.log('Cattle Data:', cattle);  // Log the cattle data
+                        
+                        // Populate modal with data
+                        $('#modal-tag-number').text(cattle.tag_number);
+                        $('#modal-category').text(cattle.category_name);
+                        $('#modal-subcategory').text(cattle.subcategory_name);
+                        $('#modal-ranch').text(cattle.ranch_name);
+                        $('#modal-status').text(cattle.status);
+                        
+                        // Show the modal
+                        $('#cattleModal').modal('show');
+                    } else {
+                        console.error('No data received for tag number:', tagNumber);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Failed to fetch cattle details:', error);
+                }
+            });
         });
     },
     error: function (xhr, status, error) {
@@ -79,8 +101,7 @@ $.ajax({
 });
 
 
-
-// This is for submiting
+// handling form submision
 document.getElementById('addTransferForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
     console.log("Form submission intercepted"); // Debugging line
@@ -114,7 +135,7 @@ document.getElementById('addTransferForm').addEventListener('submit', function(e
     .then(response => response.json().then(data => ({status: response.status, data: data})))
     .then(({status, data}) => {
         console.log("Response data:", data); // Debugging line
-        if (status === 200) {
+        if (status === 200 || status === 201){ // Changed to 201 for successful creation
             window.location.reload();
         } else {
             console.error('Failed to register transfer:', data);
