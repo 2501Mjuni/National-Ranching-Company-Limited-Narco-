@@ -12,8 +12,6 @@
     />
     <link rel="icon" href="{% static 'AdminLTE/img/logo_narco.png' %}" />
 
-    <link rel="stylesheet" href="style.css" />
-    <!-- Custom CSS -->
     <style>
       body {
         background-color: #f8f9fa;
@@ -74,9 +72,8 @@
         src="{% static 'AdminLTE/img/logo_narco.png' %}"
         alt="Narco Report System "
       />
-
       <h3>National Ranching Management System (NRMS)</h3>
-      <form>
+      <form id="login">
         <input
           type="text"
           class="form-control"
@@ -89,18 +86,10 @@
           placeholder="enter your password"
           required
         />
-        <button class="btn" type="submit">
-          <i class="fas fa-sign-in-alt"></i> Login
-        </button>
+        <button class="btn" type="submit">Login</button>
       </form>
       <footer>Copyright © 2024. NARCO NRMS (Version No. 1.0)</footer>
     </div>
-
-    <!-- Bootstrap JS and dependencies -->
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}" defer></script>
-    <script
-      src="https://kit.fontawesome.com/a076d05399.js"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>

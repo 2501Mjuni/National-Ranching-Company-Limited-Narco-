@@ -116,6 +116,10 @@ document.getElementById('addBirthForm').addEventListener('submit', function(even
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
 
+
+ // Handle null values
+    data.subcategory_id = data.subcategory_id === '' ? null : data.subcategory_id;
+
     fetch('/api/register-new-birth/', { // Correct API endpoint for registering birth cattle
         method: 'POST',
         headers: {
