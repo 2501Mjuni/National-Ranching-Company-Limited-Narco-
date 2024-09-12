@@ -1,109 +1,318 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% load static %}
+    {%  load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register - NRMS</title>
-    <!-- Bootstrap CSS -->
+    <title>Register</title>
     <link
-      rel="stylesheet"
-      href="{% static 'bootstrap/css/bootstrap.min.css' %}"
-    />
-    <link rel="icon" href="{% static 'AdminLTE/img/logo_narco.png' %}" />
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+/>
 
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link rel="icon" href="{% static 'AdminLTE/img/logo_narco.png' %}" />
     <style>
       body {
         background-color: #f8f9fa;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .login-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        font-family: Arial, sans-serif;
+        flex-grow: 1;
       }
-      .register-container {
+      .login-card {
+        {% comment %} border: none; {% endcomment %}
+        outline: none;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
         width: 100%;
         max-width: 400px;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
       }
-      .register-container img {
-        width: 120px;
+      .login-card img {
+        width: 60px;
         margin-bottom: 20px;
       }
-      .register-container h3 {
-        margin-bottom: 20px;
-        font-size: 18px;
-        font-weight: bold;
+      .navbar {
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
-      .register-container .form-control {
-        margin-bottom: 15px;
-      }
-      .register-container button {
-        width: 100%;
-        background-color: #007bff;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        color: #fff;
-        font-size: 16px;
-      }
-      .register-container button:hover {
-        background-color: #0056b3;
+      .navbar-brand img {
+        width: 50px;
       }
       footer {
         text-align: center;
-        margin-top: 20px;
-        font-size: 12px;
+        padding: 10px;
         color: #6c757d;
       }
+
       .form-control:focus {
         outline: none;
         box-shadow: none;
       }
+
+      .offcanvas-title strong {
+        font-weight: bold;
+      }
+
+      .container-fluid img {
+        width: 75px;
+        margin-bottom: 5px;
+      }
+
+      .login-card img{
+          width: 120px;
+          margin-bottom: 20px;
+      }
+
+      .btn:focus {
+        outline: none; 
+      }
+
+
     </style>
   </head>
-  <body>
-    <div class="register-container">
-      <img
-        src="{% static 'AdminLTE/img/logo_narco.png' %}"
-        alt="Narco Report System "
-      />
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'login' %}">
+        <img src="{% static 'AdminLTE/img/logo_narco.png' %}" alt="Logo"   class="logo-img"  />
+        National Ranching Company Limited
+      </a>
+      <!-- Toggle button for offcanvas -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Offcanvas for mobile view -->
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+             National Ranching Company Limited 
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="#">
+                <i class="nav-icon bi bi-house-fill text-primary"></i>
+               Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="#">
+                <i class="nav-icon bi bi-question-octagon-fill text-primary"></i>
+                Help
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="#">
+                <i class="nav-icon bi bi-file-earmark-fill text-primary"></i>
+                Docs
+              </a>
+            </li>
+          </ul>
+          <a href="{% url 'login' %}" class="btn btn-primary mt-4">
+            <i class="nav-icon bi bi-box-arrow-in-right"></i>
+            Login
+          </a>
+        </div>
+      </div>
+      <!-- Full Navbar for larger screens -->
+      <div class="d-none d-lg-block">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="#">
+              <i class="nav-icon bi bi-house-fill text-primary"></i>
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="#">
+              <i class="nav-icon bi bi-question-octagon-fill text-primary"></i>
+              Help
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="#">
+              <i class="nav-icon bi bi-file-earmark-fill text-primary"></i>
+              Docs
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary ms-4" href="{% url 'login' %}">
+              <i class="nav-icon bi bi-box-arrow-in-right"></i>
+              Login
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-      <h3>National Ranching Management System (NRMS)</h3>
-      <form id ="register-form">
-        <input
+  <!-- Login Form -->
+  <div class="login-container">
+    <div class="login-card text-center">
+      <img src="{% static 'AdminLTE/img/logo_narco.png' %}" alt="Logo" />
+      <h4  class="mb-3" >National Ranching Management System (NRMS)</h4>
+
+      <div id="notification" class="alert alert-danger d-none" role="alert">
+        <i class="nav-icon bi bi-exclamation-triangle-fill"></i>
+        <span id="notification-message"></span> <!-- Placeholder for message -->
+    </div>
+    
+      <form id="register-form">
+        <div class="mb-3">
+          <input
           type="text"
           class="form-control"
+          name="full_name"
           placeholder="Full Name"
           required
         />
-        <input type="email" class="form-control" placeholder="Email" required />
-        <input
+        </div>
+        <div class="mb-3">
+          <input
+          type="text"
+          class="form-control"
+          name="username"
+          placeholder="username"
+          required
+        />
+        </div>
+
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              placeholder="email"
+              required
+            />
+          </div>
+      <div class="mb-3">
+          <input
           type="tel"
           class="form-control"
+          name="phone_number"
           placeholder="Phone Number"
           required
         />
-        <input
+        </div>
+        <div class="mb-3">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
           type="password"
           class="form-control"
-          placeholder="Password"
-          required
-        />
-        <input
-          type="password"
-          class="form-control"
+          name="password_confirm"
           placeholder="Confirm Password"
           required
-        />
-        <button class="btn" type="submit">Register</button>
+                />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="nav-icon bi bi-person-plus-fill"></i>
+        Register
+        </button>
       </form>
-      <footer>Copyright © 2024. NARCO NRMS (Version No. 1.0)</footer>
     </div>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js'%}"></script>
-  </body>
+  </div>
+
+  <footer class="card-footer">
+    <div class="float-end d-none d-sm-inline">Kongwa Beef Production</div>
+    <strong>
+      Copyright &copy; 2024&nbsp;
+      <a href="www.narco.go.tz" class="text-decoration-none"
+        >Narco</a
+      >.
+    </strong>
+    All rights reserved.
+  </footer>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}" defer></script>
+  <script src="{% static 'js/s5.js' %}" defer></script>
+  <script>
+document.getElementById('register-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  console.log("register is run")
+  // Collect form data
+  const formData = new FormData(event.target);
+  const data = {};
+  formData.forEach((value, key) => {
+      data[key] = value;
+  });
+
+  // Send POST request to registration endpoint
+  fetch('/api/users/register_ad/', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+  })
+  .then(response => {
+      // Check if the response status is 201 (Created) for success
+      if (response.status === 201) {
+          return response.json();  // Parse the JSON data if registration was successful
+      } else {
+          throw new Error('Registration failed');
+      }
+  })
+  .then(data => {
+      // Redirect to login page on successful registration
+      window.location.href = "/dashboard/login/";
+  })
+  .catch(error => {
+      // Handle error responses and show notification
+      console.error(error);
+      showNotification('Registration failed. Please check the details and try again.');
+  });
+});
+
+// Function to show notification
+function showNotification(message) {
+  const notification = document.getElementById('notification');
+  const messageSpan = document.getElementById('notification-message');
+  messageSpan.textContent = message;
+  notification.classList.remove('d-none');  // Show the notification
+  setTimeout(() => {
+      notification.classList.add('d-none');  // Hide after 5 seconds
+  }, 5000);
+}
+
+  </script>
+</body>
 </html>

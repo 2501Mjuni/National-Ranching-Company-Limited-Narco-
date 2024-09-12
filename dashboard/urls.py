@@ -15,7 +15,7 @@ from .views import( CattleListView,
 
 
 urlpatterns = [
-    path('', views.dashboard_home, name='index'), 
+    path('index/', views.dashboard_home, name='index'), 
     path('register_user/', views.register_user, name='register_user'),
     path('login/', views.login, name='login'), 
     path('cattle_list/', CattleListView.as_view(), name='cattle_list'),  
