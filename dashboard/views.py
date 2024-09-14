@@ -1,13 +1,15 @@
    
 from django.shortcuts import render
 from django.views.generic import TemplateView
-
+from django.contrib.auth.decorators import login_required
 
 # render index.html
+
+
 def dashboard_home(request):
     return render(request, 'home/index.html')
-
     
+
 def register_user(request):
     return render(request, 'users/register_user.html')
 
@@ -27,16 +29,11 @@ class SlaughterListView(TemplateView):
 class TransferListView(TemplateView):
     template_name = 'ListOfReg/transfer_list.html'
     
-    
 class CattleListView(TemplateView):
     template_name = 'ListOfReg/cattle_list.html'
   
-  
 class DeathListView(TemplateView):
     template_name = 'ListOfReg/death_list.html'
-
-# def ranch_list(request):
-#     return render(request, 'ListOfReg/ranch_list.html')
 
 class RanchListView(TemplateView):
     template_name = 'ListOfReg/ranch_list.html'
@@ -54,3 +51,5 @@ class BirthListView(TemplateView):
 class LostListView(TemplateView):
     template_name = 'ListOfReg/lost_list.html'
     
+class RanchView(TemplateView):
+    template_name = 'Ranch/ranch.html'

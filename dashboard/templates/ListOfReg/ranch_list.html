@@ -125,58 +125,28 @@
               </a>
             </li>
             <!--end::Fullscreen Toggle-->
-            <!--begin::User Menu Dropdown-->
-            <li class="nav-item dropdown user-menu">
-              <a
-                href="#"
-                class="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                <img
-                  src="{% static 'AdminLTE/img/logo_narco.png' %}"
-                  class="user-image rounded-circle shadow"
-                  alt="User Image"
-                />
-                <span class="d-none d-md-inline">Narco System</span>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <!--begin::User Image-->
-                <li class="user-header text-bg-primary">
-                  <img
-                   src="{% static 'AdminLTE/img/logo_narco.png' %}"
-                    class="rounded-circle shadow"
-                    alt="User Image"
-                  />
-                  <p>
-                    Narco Report System
-                    <small>For the Narco improvements</small>
-                  </p>
-                </li>
-                <!--end::User Image-->
-                <!--begin::Menu Body-->
-                <li class="user-body">
-                  <!--begin::Row-->
-                  <div class="row">
-                    <div class="col-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-4 text-center"><a href="#">Sales</a></div>
-                    <div class="col-4 text-center"><a href="#">Friends</a></div>
-                  </div>
-                  <!--end::Row-->
-                </li>
-                <!--end::Menu Body-->
-                <!--begin::Menu Footer-->
-                <li class="user-footer">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="#" class="btn btn-default btn-flat float-end"
-                    >Sign out</a
-                  >
-                </li>
-                <!--end::Menu Footer-->
-              </ul>
-            </li>
-            <!--end::User Menu Dropdown-->
+
+
+
+<!--begin::User Menu Dropdown-->
+<li class="nav-item  user-menu">
+  <a
+    href="#"
+    class="nav-link"
+  >
+    <img
+      src="{% static 'AdminLTE/img/logo_narco.png' %}"
+      class="user-image rounded-circle shadow"
+      alt="User Image"
+    />
+    <span class="d-none d-md-inline">
+      <i class="nav-icon bi bi-power"></i>
+      Log out
+    </span>
+  </a>
+<!--end of drop Menu-->
+
+
           </ul>
           <!--end::End Navbar Links-->
         </div>
@@ -413,72 +383,6 @@ Lost Cattles
       </div>
   </div>
   
-
-
-
-{% comment %} <!-- Modal for Adding Ranch -->
-<div class="modal fade" id="addRanchModal" tabindex="-1" aria-labelledby="addRanchModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addRanchModalLabel">Add New Ranch</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-          <form id="addRanchForm">
-
-            {% csrf_token %}
-            
-            <div class="mb-3">
-              <label for="ranchName" class="form-label">Ranch Name</label>
-              <input type="text" class="form-control" id="ranchName" name= "name" required>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Add Ranch</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-   {% endcomment %}
-
-
-
-<!-- Modal for Adding Ranch -->
-{% comment %} <div class="modal fade" id="addRanchModal" tabindex="-1" aria-labelledby="addRanchModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addRanchModalLabel">Add New Ranch</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-        <!-- Notification Area -->
-        <div id="notificationArea"></div>
-
-        <form id="addRanchForm">
-          {% csrf_token %}
-          
-          <div class="mb-3">
-            <label for="ranchName" class="form-label">Ranch Name</label>
-            <input type="text" class="form-control" id="ranchName" name="name" required>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add Ranch</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div> {% endcomment %}
-
-
-
 
 
 <!-- Modal for Adding Ranch -->

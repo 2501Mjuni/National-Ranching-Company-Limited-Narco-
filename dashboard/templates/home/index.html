@@ -105,6 +105,47 @@
             <li class="nav-item d-none d-md-block">
               <a href="#" class="nav-link">Contact</a>
             </li>
+
+
+           {% comment %} <!--this is for the date-->
+            <span class="navbar-text text-center">
+              Logged in as: {{ request.user.username }} | <span id="loginDate"></span>
+            </span> {% endcomment %}
+
+             {% comment %} <div class="d-flex justify-content-center mx-auto ">
+              <span class="navbar-text text-center">
+                Logged in as: {{ request.user.username }} | <span id="loginDate"></span>
+              </span>
+            </div>  {% endcomment %}
+
+
+            {% comment %} <div class="d-flex justify-content-center flex-grow-1">
+              <span class="navbar-text">
+                Logged in as: {{ request.user.username }} | <span id="loginDate"></span>
+              </span>
+            </div> {% endcomment %}
+
+            {% comment %} <div class="mx-auto" style="padding-left: 360px;"> <!-- Adjust padding here -->
+              <span class="navbar-text text-center">
+                Logged in as: {{ request.user.username }} | <span id="loginDate"></span>
+              </span>
+            </div> {% endcomment %}
+
+
+{% comment %} 
+              <span class="navbar-text">
+                Logged in as: {{ request.user.username }} | <span id="loginDate"></span>
+              </span> {% endcomment %}
+{% comment %} 
+                <span class="navbar-text">
+                  Logged in as: {{ user.username }} | <span id="loginDate"></span>
+                </span>
+               {% endcomment %}
+
+                <span class="navbar-text">
+                  Logged in as: <span id="loggedInUsername"></span> | <span id="loginDate"></span>
+                </span>
+
           </ul>
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
@@ -134,58 +175,28 @@
               </a>
             </li>
             <!--end::Fullscreen Toggle-->
-            <!--begin::User Menu Dropdown-->
-            <li class="nav-item dropdown user-menu">
-              <a
-                href="#"
-                class="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                <img
-                  src="{% static 'AdminLTE/img/logo_narco.png' %}"
-                  class="user-image rounded-circle shadow"
-                  alt="User Image"
-                />
-                <span class="d-none d-md-inline">Narco System</span>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <!--begin::User Image-->
-                <li class="user-header text-bg-primary">
-                  <img
-                   src="{% static 'AdminLTE/img/logo_narco.png' %}"
-                    class="rounded-circle shadow"
-                    alt="User Image"
-                  />
-                  <p>
-                    Narco Report System
-                    <small>For the Narco improvements</small>
-                  </p>
-                </li>
-                <!--end::User Image-->
-                <!--begin::Menu Body-->
-                <li class="user-body">
-                  <!--begin::Row-->
-                  <div class="row">
-                    <div class="col-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-4 text-center"><a href="#">Sales</a></div>
-                    <div class="col-4 text-center"><a href="#">Friends</a></div>
-                  </div>
-                  <!--end::Row-->
-                </li>
-                <!--end::Menu Body-->
-                <!--begin::Menu Footer-->
-                <li class="user-footer">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="#" class="btn btn-default btn-flat float-end"
-                    >Sign out</a
-                  >
-                </li>
-                <!--end::Menu Footer-->
-              </ul>
-            </li>
-            <!--end::User Menu Dropdown-->
+
+
+<!--begin::User Menu Dropdown-->
+<li class="nav-item  user-menu">
+  <a
+    href="#"
+    class="nav-link"
+    id="logout-link"
+  >
+    <img
+      src="{% static 'AdminLTE/img/logo_narco.png' %}"
+      class="user-image rounded-circle shadow"
+      alt="User Image"
+    />
+    <span class="d-none d-md-inline">
+      <i class="nav-icon bi bi-power"></i>
+      Log out
+    </span>
+  </a>
+<!--end of drop Menu-->
+
+
           </ul>
           <!--end::End Navbar Links-->
         </div>

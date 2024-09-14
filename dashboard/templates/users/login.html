@@ -84,13 +84,13 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'login' %}">
+      <a class="navbar-brand text-primary fs-lg-3" href="{% url 'login' %}">
         <img src="{% static 'AdminLTE/img/logo_narco.png' %}" alt="Logo"   class="logo-img"  />
         National Ranching Company Limited
       </a>
       <!-- Toggle button for offcanvas -->
       <button
-        class="navbar-toggler"
+        class="navbar-toggler text-primary"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNavbar"
@@ -108,7 +108,7 @@
         aria-labelledby="offcanvasNavbarLabel"
       >
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+          <h5 class="offcanvas-title text-primary fs-5" id="offcanvasNavbarLabel">
              National Ranching Company Limited 
           </h5>
           <button
@@ -182,11 +182,6 @@
   <div class="login-container">
     <div class="login-card text-center">
       <img src="{% static 'AdminLTE/img/logo_narco.png' %}" alt="Logo" />
-      <h4 class="mb-3">National Ranching Management System (NRMS)</h4>
-      {% comment %} <div id="notification" class="alert alert-danger d-none" role="alert">
-        <i class="nav-icon bi bi-exclamation-triangle-fill"></i>
-      </div> {% endcomment %}
-
       <div id="notification" class="alert alert-danger d-none" role="alert">
         <i class="nav-icon bi bi-exclamation-triangle-fill"></i>
         <span id="notification-message"></span> <!-- Placeholder for message -->
