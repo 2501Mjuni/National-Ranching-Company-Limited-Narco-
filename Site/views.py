@@ -53,3 +53,7 @@ class LostListView(TemplateView):
     
 class RanchView(TemplateView):
     template_name = 'Ranch/ranch.html'
+
+
+
+    

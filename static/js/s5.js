@@ -30,7 +30,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
             localStorage.setItem('refresh_token', data.refresh);
 
             // Redirect to dashboard on successful login
-            window.location.href = "/dashboard/index/";
+            window.location.href = "/Site/index/";
         } else {
             // Show error message
             showNotification('Invalid username or password.');

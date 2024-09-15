@@ -32,4 +32,3 @@ urlpatterns = [
     path('lost_list/', LostListView.as_view(), name='lost_list'),
     path('ranch/', RanchView.as_view(), name='ranch'),
 ]
-

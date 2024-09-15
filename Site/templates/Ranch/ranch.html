@@ -268,68 +268,74 @@
                 </ul>
 
 
-                <!-- The registrationn of events-->
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon bi bi-person-plus-fill"></i>
-                    <p>
-                      Register events
-                       <span class="nav-badge badge text-bg-secondary me-3"
-                        >6</span
-                      > 
-                      <i class="nav-arrow bi bi-chevron-right"></i>
-                    </p>
-                   </a>
-                   <ul class="nav nav-treeview">
-                    <li class="nav-item"> <a href="{% url 'register_cattle' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                            <p>
-                              Register cattle
-                            </p>
-                        </a> </li>
-                        <li class="nav-item"> <a href="{% url 'register_sale' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                          <p>Register sale </p>
-                      </a> </li>
-                      <li class="nav-item"> <a href="{% url 'register_death_page' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                        <p>Register death</p>
-                    </a> </li>
-                    <li class="nav-item"> <a href="{% url 'register_recovery' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+          <!-- The registration of events-->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon bi bi-clipboard-fill"></i>
+              <p>
+                Cattle events
+                
+                <i class="nav-arrow bi bi-chevron-right"></i>
+              </p>
+             </a>
+             <ul class="nav nav-treeview">
+              <li class="nav-item"> <a href="{% url 'cattle_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                       <p>
-                        Register recovery
+                        Available Cattles
                       </p>
                   </a> </li>
-      
-                  <li class="nav-item"> <a href="{% url 'register_slaughter' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                    <p>
-                      Register slaughter
-                    </p>
+                  <li class="nav-item"> <a href="{% url 'sale_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                    <p>Sold Cattles </p>
                 </a> </li>
-      
-                <li class="nav-item"> <a href="{% url 'register_transfer' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                  <p>
-                    Register transfer
-                  </p>
+                <li class="nav-item"> <a href="{% url 'death_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                  <p>Death Cattles</p>
               </a> </li>
-
-              <li class="nav-item"> <a href="{% url 'register_complementary' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+              <li class="nav-item"> <a href="{% url 'recovery_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                 <p>
-                  Register complementary
+                Recovered Cattles
                 </p>
             </a> </li>
 
-
-            <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+            <li class="nav-item"> <a href="{% url 'slaughter_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
               <p>
-                Register birth
+                Slaughtered Cattles
               </p>
           </a> </li>
 
-          <li class="nav-item"> <a href="{% url 'register_bought' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+          <li class="nav-item"> <a href="{% url 'transfer_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
             <p>
-              Register bought
+              Transferred Cattles
             </p>
         </a> </li>
-                  </ul>
-      
+
+        <li class="nav-item"> <a href="{% url 'complementary_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+          <p>
+            Complementary Cattles
+          </p>
+      </a> </li>
+
+
+      <li class="nav-item"> <a href="{% url 'bought_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+        <p>
+          Bought Cattles
+        </p>
+    </a> </li>
+
+
+    <li class="nav-item"> <a href="{% url 'birth_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+      <p>
+        Birth Cattles
+      </p>
+  </a> </li>
+
+  <li class="nav-item"> <a href="{% url 'lost_list' %}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+    <p>
+      Lost Cattles
+    </p>
+</a> </li>
+            </ul>
+
+            
             <!--end::Sidebar Menu-->
           </nav>
         </div>
@@ -363,57 +369,205 @@
         
         <!--begin::App Content-->
 
-<div class="content-wrapper">
-  <div class="container mt-4">
-      <h1 class="mb-4">Register Cattle</h1>
-      <form id="register-cattle-form" method="POST" action="/api/register-cattle/">
-          {% csrf_token %}
 
-          <div class="card">
-              <div class="card-header">
-                  <h3 class="card-title">Register Cattle</h3>
-              </div>
-              <div class="card-body">
-                  <div class="mb-3">
-                      <label for="tag_number" class="form-label">Tag Number</label>
-                      <input type="text" class="form-control" id="tag_number" name="tag_number" required />
-                  </div>
-                  <div class="mb-3">
-                      <label for="birth_date" class="form-label">Birth Date</label>
-                      <input type="date" class="form-control" id="birth_date" name="birth_date" required />
-                  </div>
-                  <div class="mb-3">
-                    <label for="ranch_id" class="form-label">Ranch</label>
-                    <select class="form-control" id="ranch_id" name="ranch_id" required>
-                        <option value="" selected disabled>Select Ranch</option>
-                        <!-- Options for ranches will be populated dynamically by JavaScript -->
-                    </select>
-                </div>
 
-                  <div class="mb-3">
-                      <label for="category_id" class="form-label">Category</label>
-                      <select class="form-control" id="category_id" name="category_id" required>
-                        <option value="" selected disabled>Select Category</option>
-                      </select>
-                  </div>
 
-                  <div class="mb-3">
-                    <label for="subcategory_id" class="form-label">Subcategory (Optional)</label>
-                    <select class="form-control" id="subcategory_id" name="subcategory_id">
-                        <option value="" selected disabled>Select Subcategory</option>
-                        <!-- Options for subcategories will be populated dynamically by JavaScript -->
-                    </select>
-                </div>
-              </div>
-              <div class="card-footer">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'index' %}'">Back</button>
 
-                <button type="submit" class="btn btn-primary">Register Cattle</button>
-              </div>
-          </div>
-      </form>
-  </div>
+
+
+<!--This is for the cards-->
+    <div class="container-fluid">
+<div class="row g-3 mb-4">
+
+<!--This is for Cattles-->
+  <div class="col-md-4">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"> Cattles</h3>
+            <div class="card-tools">
+               <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"> 
+                <i data-lte-icon="expand" class="bi bi-plus-lg"></i> 
+                <i data-lte-icon="collapse" class="bi bi-dash-lg"></i> 
+              </button>
+              <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
+                <i class="bi bi-x-lg"></i>
+            </button>
+             </div> <!-- /.card-tools -->
+        </div> <!-- /.card-header -->
+        <div class="card-body p-0">
+          <div class="list-group h-100 w-100"> 
+            <a href="#" class="list-group-item list-group-item-action">
+              <i class="nav-icon bi bi-chevron-right big-icon"></i>
+              Bulls
+            </a>
+         <a href="#" class="list-group-item list-group-item-action">
+          <i class="nav-icon bi bi-chevron-right"></i>
+          Cows
+        </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="nav-icon bi bi-chevron-right"></i>
+            Calves
+          </a>
+           <a href="#" class="list-group-item list-group-item-action">
+            <i class="nav-icon bi bi-chevron-right"></i>
+            Steers
+          </a> 
+           </div>
+        </div> <!-- /.card-body -->
+    </div> <!-- /.card -->
+</div> <!-- /.col -->
+<!--End of Card Cattles-->
+
+
+<!--This is for the cattle events-->
+  <div class="col-md-4">
+      <div class="card">
+          <div class="card-header">
+              <h3 class="card-title">Cattles Events</h3>
+              <div class="card-tools">
+                 <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"> 
+                  <i data-lte-icon="expand" class="bi bi-plus-lg"></i> 
+                  <i data-lte-icon="collapse" class="bi bi-dash-lg"></i> 
+                </button>
+                <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
+                  <i class="bi bi-x-lg"></i>
+              </button>
+               </div> <!-- /.card-tools -->
+          </div> <!-- /.card-header -->
+          <div class="card-body p-0">
+            <div class="list-group h-100 w-100"> 
+              <a href="#" class="list-group-item list-group-item-action">
+                <i class="nav-icon bi bi-chevron-right big-icon"></i>
+                Birth Cattles
+              </a>
+           <a href="#" class="list-group-item list-group-item-action">
+            <i class="nav-icon bi bi-chevron-right"></i>
+            Bought Cattles
+          </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <i class="nav-icon bi bi-chevron-right"></i>
+              Complementary Cattles
+            </a>
+             <a href="#" class="list-group-item list-group-item-action">
+              <i class="nav-icon bi bi-chevron-right"></i>
+              Death Cattles
+            </a> 
+             <a class="list-group-item list-group-item-action">
+              <i class="nav-icon bi bi-chevron-right"></i>
+              Lost Cattles
+            </a>
+            <a class="list-group-item list-group-item-action">
+              <i class="nav-icon bi bi-chevron-right"></i>
+              Recovered Cattles
+            </a>
+            <a class="list-group-item list-group-item-action">
+              <i class="nav-icon bi bi-chevron-right"></i>
+              Sold Cattles
+            </a>
+            <a class="list-group-item list-group-item-action">
+              <i class="nav-icon bi bi-chevron-right"></i>
+              Slaughtered Cattles
+            </a>
+            <a class="list-group-item list-group-item-action">
+              <i class="nav-icon bi bi-chevron-right"></i>
+              Transferred Cattles
+            </a>
+             </div>
+          </div> <!-- /.card-body -->
+      </div> <!-- /.card -->
+  </div> <!-- /.col -->
+<!--The end of the cattle events-->
+
+
+
+<div class="col-md-4">
+  <div class="card">
+      <div class="card-header">
+          <h3 class="card-title">Collapsible</h3>
+          <div class="card-tools">
+              <!-- Collapse/Expand Button -->
+              <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                  <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                  <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+              </button>
+              <!-- Remove Button -->
+              <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
+                  <i class="bi bi-x-lg"></i>
+              </button>
+          </div> <!-- /.card-tools -->
+      </div> <!-- /.card-header -->
+      <div class="card-body">
+          The body of the card
+      </div> <!-- /.card-body -->
+  </div> <!-- /.card -->
+</div> <!-- /.col -->
+
+</div> <!--end::Row-->
+
+
+
+
+<div class="row g-2 mb-4">
+
+
+  <div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Collapsible</h3>
+            <div class="card-tools">
+                <!-- Collapse/Expand Button -->
+                <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                    <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                    <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                </button>
+                <!-- Remove Button -->
+                <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div> <!-- /.card-tools -->
+        </div> <!-- /.card-header -->
+        <div class="card-body">
+            The body of the card
+        </div> <!-- /.card-body -->
+    </div> <!-- /.card -->
+  </div> <!-- /.col -->
+
+
+  
+  <div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Collapsible</h3>
+            <div class="card-tools">
+                <!-- Collapse/Expand Button -->
+                <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                    <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                    <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                </button>
+                <!-- Remove Button -->
+                <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div> <!-- /.card-tools -->
+        </div> <!-- /.card-header -->
+        <div class="card-body">
+            The body of the card
+        </div> <!-- /.card-body -->
+    </div> <!-- /.card -->
+  </div> <!-- /.col -->
+  
+
 </div>
+
+
+
+
+
+
+
+          </div>
+<!--the end of the card container-->
+
 
                 <!--end::Small Box Widget 4-->
               </div>
