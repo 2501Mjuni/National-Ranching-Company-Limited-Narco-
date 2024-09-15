@@ -48,8 +48,10 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     "Site",
     "core",
+    "ranch_core",
     "users",
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -182,3 +184,4 @@ AUTHENTICATION_BACKENDS = [
     'users.authentication_backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+

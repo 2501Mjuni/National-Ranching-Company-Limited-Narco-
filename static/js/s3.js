@@ -14,7 +14,7 @@ function logout() {
     // Perform logout and redirect to login page
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
-    window.location.href = "/dashboard/login/";
+    window.location.href = "/Site/login/";
 }
 
 
@@ -24,7 +24,6 @@ document.onmousemove = resetTimer;
 document.onkeydown = resetTimer; // Replaced onkeypress with onkeydown
 document.ontouchstart = resetTimer; // For mobile devices
 document.onclick = resetTimer; // Additional event for clicks
-
 
 
 
@@ -68,5 +67,3 @@ document.getElementById('logout-link').addEventListener('click', function(event)
         console.error('There was a problem with the fetch operation:', error);
     });
 });
-
-

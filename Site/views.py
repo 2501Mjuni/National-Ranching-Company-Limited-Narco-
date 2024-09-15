@@ -52,7 +52,7 @@ class LostListView(TemplateView):
     template_name = 'ListOfReg/lost_list.html'
     
 class RanchView(TemplateView):
-    template_name = 'Ranch/ranch.html'
+    template_name = 'Ranches/ranch.html'
 
 
 
