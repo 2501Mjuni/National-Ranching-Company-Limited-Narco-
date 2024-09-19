@@ -30,5 +30,5 @@ urlpatterns = [
     path('bought_list/', BoughtListView.as_view(), name='bought_list'),
     path('birth_list/', BirthListView.as_view(), name='birth_list'),
     path('lost_list/', LostListView.as_view(), name='lost_list'),
-    path('ranch/', RanchView.as_view(), name='ranch'),
+    path('ranches/<int:name>/', RanchView.as_view(), name='ranches'),
 ]

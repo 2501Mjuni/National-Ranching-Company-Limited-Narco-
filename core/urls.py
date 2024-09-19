@@ -2,6 +2,7 @@
 from django.urls import re_path
 from .views import (
     RanchList,
+    RanchDetail,
     CategoryList,
     SubcategoryList,
     CattleList,
@@ -32,6 +33,7 @@ from .views import (
 
 urlpatterns = [
     re_path(r'^ranches/$', RanchList.as_view(), name='ranch_listed'),
+    re_path(r'^ranches/(?P<ranch_id>\d+)/$', RanchDetail.as_view(), name='ranch_detail'),
     re_path(r'^categories/$', CategoryList.as_view(), name='category_list'),
     re_path(r'^subcategories/$', SubcategoryList.as_view(), name='subcategory_list'),
     re_path(r'^cattle/$', CattleList.as_view(), name='cattle-list'),
@@ -59,4 +61,3 @@ urlpatterns = [
     re_path(r'^cattle-list/$', api_cattle_list, name= 'api_cattle_list'),
     re_path(r'^details-list/(?P<tag_number>\w+)/$', api_cattle_details_list, name='api_cattle_details_list'),
 ]
-    

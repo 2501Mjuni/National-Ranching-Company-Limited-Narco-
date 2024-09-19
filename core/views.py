@@ -85,9 +85,23 @@ def api_cattle_list(request):
 
     
      
-class RanchList(generics.ListAPIView):
-    queryset = Ranch.objects.all()
-    serializer_class = RanchSerializer
+
+class RanchList(APIView):
+    def get(self, request):
+        ranches = Ranch.objects.all()
+        serializer = RanchSerializer(ranches, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class RanchDetail(APIView):
+    def get(self, request, ranch_id):
+        try:
+            ranch = Ranch.objects.get(id=ranch_id)
+        except Ranch.DoesNotExist:
+            return Response({'error': 'Ranch not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = RanchSerializer(ranch)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class CategoryList(generics.ListAPIView):
     queryset = Category.objects.all()
