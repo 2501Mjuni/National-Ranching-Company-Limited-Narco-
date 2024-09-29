@@ -13,8 +13,12 @@ $.ajax({
                 {
                     data: null,
                     render: function (data, type, row) {
-                        return `<a href="/ranches/${row.name}/" class="btn btn-info btn-sm"><i class="bi bi-eye"></i> View</a>`;
+                        return `
+                    <a href="/Site/ranches/${row.id}/" class="btn btn-info btn-sm"><i class="bi bi-eye"></i>
+                     View
+                     </a>`;
                     },
+
                 }, // View Button redirects to ranch detail page
                 {
                     data: null,
@@ -49,4 +53,4 @@ $.ajax({
         console.error('Failed to fetch ranch data:', error);
     }
   });
-  
+ 

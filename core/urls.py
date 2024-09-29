@@ -61,3 +61,4 @@ urlpatterns = [
     re_path(r'^cattle-list/$', api_cattle_list, name= 'api_cattle_list'),
     re_path(r'^details-list/(?P<tag_number>\w+)/$', api_cattle_details_list, name='api_cattle_details_list'),
 ]
+ 

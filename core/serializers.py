@@ -21,9 +21,9 @@ class CattleSerializer(serializers.ModelSerializer):
     category_id = serializers.IntegerField(write_only=True)
     subcategory_id = serializers.IntegerField(write_only=True)
 
-    ranch = RanchSerializer(read_only=True)  # Include ranch details in the output
-    category = CategorySerializer(read_only=True)  # Include category details in the output
-    subcategory = SubcategorySerializer(read_only=True)  # Include subcategory details in the output
+    ranch = RanchSerializer(read_only=True)  
+    category = CategorySerializer(read_only=True)  
+    subcategory = SubcategorySerializer(read_only=True)
 
     class Meta:
         model = Cattle

@@ -48,7 +48,6 @@ def register_new_cattle(request):
     category_id = request.POST.get('category_id')
     subcategory_id = request.POST.get('subcategory_id', None)
 
-
     subcategory_id = None if subcategory_id == '' else subcategory_id
 
     if not tag_number or not birth_date or not ranch_id or not category_id :
@@ -816,3 +815,4 @@ def api_cattle_details_list(request, tag_number):
     except Exception as e:
         import traceback
         return Response({'error': str(e), 'traceback': traceback.format_exc()}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+ 

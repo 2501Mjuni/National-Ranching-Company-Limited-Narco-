@@ -3,6 +3,7 @@ from django.shortcuts import render,get_object_or_404
 from django.views import View
 from django.views.generic import TemplateView, DetailView
 from django.contrib.auth.decorators import login_required
+from urllib.parse import unquote
 
 # render index.html
 def dashboard_home(request):
@@ -54,35 +55,17 @@ class LostListView(TemplateView):
 #     template_name = 'Ranches/ranch.html'
 
 
-
-# class RanchView(View):
-#     template_name = 'Ranches/ranch.html'
-
-#     def get(self, request, ranch_id):
-#         # Fetch ranch details from the API
-#         response = requests.get(f'http://127.0.0.1:8000/api/ranches/{ranch_id}/')
-        
-#         if response.status_code == 200:
-#             ranch = response.json()  # Convert API response to JSON
-#         else:
-#             ranch = None  # Handle case where ranch is not found or API fails
-
-#         return render(request, self.template_name, {'ranch': ranch})
-    
-
-
 class RanchView(View):
     template_name = 'Ranches/ranch.html'
 
-    def get(self, request, name):
-        # Fetch ranch details from the API
+    def get(self, request, id):
+
+        # Fetch ranch details from the API using the decoded name
         try:
-            response = requests.get(f'http://127.0.0.1:8000/api/ranches/{name}/')
-            response.raise_for_status()  # Raises an HTTPError for bad responses (4xx and 5xx)
-            ranch = response.json()  # Convert API response to JSON
-        except requests.RequestException as e:
-            # Handle errors such as network issues or invalid responses
-            ranch = None
-            # Optionally, you could log the exception or provide more specific error handling
+            response = requests.get(f'http://127.0.0.1:8000/api/ranches/{id}/')
+            response.raise_for_status()
+            ranch = response.json()  # Parse the API response as JSON
+        except requests.RequestException:
+            ranch = None  # Handle errors (e.g., ranch not found)
 
         return render(request, self.template_name, {'ranch': ranch})
